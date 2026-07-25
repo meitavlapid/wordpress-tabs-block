@@ -1,0 +1,596 @@
+.tabs-section__mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* ==================================================
+     Shared responsive values
+     ================================================== */
+
+  .tabs-section-mobile {
+    --mobile-width: clamp(290px, calc(100vw - 56px), 640px);
+    --wing-gap: clamp(6px, 1.5vw, 10px);
+    --block-gap: clamp(8px, 1.8vw, 14px);
+    --space-xs: clamp(5px, 1.2vw, 8px);
+    --space-sm: clamp(8px, 1.8vw, 13px);
+    --space-md: clamp(12px, 2.8vw, 20px);
+    --space-lg: clamp(18px, 4vw, 30px);
+    --radius: clamp(10px, 2vw, 16px);
+    --card-bg: rgba(103, 242, 215, 0.2);
+    --wing-bg: rgba(103, 242, 215, 0.11);
+
+    width: 100%;
+    padding: clamp(32px, 7vw, 56px) 0 clamp(42px, 9vw, 72px);
+    overflow-x: clip;
+    background: #09143a;
+  }
+
+  /* ==================================================
+     Visibility and base layout
+     ================================================== */
+
+  .tabs-section {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    overflow-x: clip;
+    background: #09143a;
+  }
+
+  .tabs-section__container {
+    display: none;
+  }
+
+  .tabs-section__mobile {
+    display: block;
+    width: 100%;
+  }
+
+  .tabs-section-mobile__container {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 6vw, 46px);
+    width: 100%;
+  }
+
+  /* ==================================================
+     Heading
+     ================================================== */
+
+  .tabs-section-mobile__header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    min-height: clamp(62px, 14vw, 88px);
+    padding-inline: 15px;
+  }
+
+  .tabs-section-mobile__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .tabs-section-mobile__title-light,
+  .tabs-section-mobile__title-bold {
+    display: block;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(27px, 6vw, 40px);
+    line-height: 1.13;
+    white-space: nowrap;
+  }
+
+  .tabs-section-mobile__title-light {
+    font-weight: 300;
+    letter-spacing: -1px;
+  }
+
+  .tabs-section-mobile__title-bold {
+    position: relative;
+    margin-top: -2px;
+    font-weight: 700;
+    letter-spacing: -2px;
+  }
+
+  .tabs-section-mobile__title-bold::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: clamp(-10px, -1.8vw, -7px);
+    width: clamp(110px, 25vw, 155px);
+    height: clamp(12px, 2.8vw, 17px);
+    background: url("../../assets/images/marker.svg") center / contain no-repeat;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  /* ==================================================
+     Tabs slider
+     ================================================== */
+
+  .tabs-section-mobile__slider {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: calc((100% - var(--mobile-width)) / 2);
+    scroll-behavior: smooth;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabs-section-mobile__slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabs-section-mobile__slider-track {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    width: max-content;
+    padding-inline: calc((100vw - var(--mobile-width)) / 2);
+  }
+
+  .tabs-section-mobile__tab {
+    position: relative;
+    display: flex;
+    flex: 0 0 var(--mobile-width);
+    align-items: center;
+    justify-content: center;
+    width: var(--mobile-width);
+    height: clamp(78px, 18vw, 112px);
+    padding: 0;
+    border: 0;
+    background: rgba(103, 242, 215, 0.08);
+    opacity: 0.68;
+    cursor: pointer;
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    transition:
+      background 0.25s ease,
+      opacity 0.25s ease;
+  }
+
+  .tabs-section-mobile__tab::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #68f2d7 0%, #0d3047 100%);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .tabs-section-mobile__tab.is-active {
+    background: rgba(103, 242, 215, 0.15);
+    opacity: 1;
+  }
+
+  .tabs-section-mobile__tab.is-active::after {
+    opacity: 1;
+  }
+
+  .tabs-section-mobile__tab:focus-visible {
+    z-index: 2;
+    outline: 2px solid #68f2d7;
+    outline-offset: -2px;
+  }
+
+  .tabs-section-mobile__tab.is-clone {
+    pointer-events: auto;
+  }
+
+  .tabs-section-mobile__tab.is-clone:focus {
+    outline: none;
+  }
+
+  .tabs-section-mobile__tab-logo {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: clamp(125px, 32vw, 200px);
+    max-height: clamp(28px, 7vw, 48px);
+    object-fit: contain;
+    pointer-events: none;
+  }
+
+  .tabs-section-mobile__tab-title {
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(17px, 4vw, 25px);
+    font-weight: 700;
+  }
+
+  /* ==================================================
+     Panels and story
+     ================================================== */
+
+  .tabs-section-mobile__panels,
+  .tabs-section-mobile__panel {
+    width: 100%;
+  }
+
+  .tabs-section-mobile__panel {
+    overflow: visible;
+  }
+
+  .tabs-section-mobile__panel[hidden] {
+    display: none;
+  }
+
+  .tabs-section-mobile__story {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--block-gap);
+    width: var(--mobile-width);
+    margin-inline: auto;
+    overflow: visible;
+  }
+
+  /* Decorative cards visible on both sides */
+  .tabs-section-mobile__story::before,
+  .tabs-section-mobile__story::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: calc((100vw - var(--mobile-width)) / 2 - var(--wing-gap));
+    border-radius: var(--radius);
+    background: var(--wing-bg);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .tabs-section-mobile__story::before {
+    right: calc(100% + var(--wing-gap));
+  }
+
+  .tabs-section-mobile__story::after {
+    left: calc(100% + var(--wing-gap));
+  }
+
+  /* ==================================================
+     Quote card
+     ================================================== */
+
+  .tabs-section-mobile__quote-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: clamp(350px, calc(72vw + 90px), 620px);
+    padding: clamp(18px, 4vw, 32px) clamp(10px, 3.5vw, 28px)
+      clamp(14px, 3.5vw, 26px);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+  }
+
+  .tabs-section-mobile__quote {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .tabs-section-mobile__quote-icon {
+    display: block;
+    width: clamp(60px, 15vw, 96px);
+    height: auto;
+    margin: 0 auto var(--space-md);
+    object-fit: contain;
+  }
+
+  .tabs-section-mobile__quote-text {
+    width: 100%;
+    max-width: clamp(260px, 70vw, 500px);
+    margin-inline: auto;
+
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(14px, 3.5vw, 21px);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    text-align: center;
+  }
+
+  .tabs-section-mobile__quote-text p {
+    margin: 0;
+  }
+
+  .tabs-section-mobile__signature {
+    width: 100%;
+    margin-top: auto;
+    padding-top: clamp(20px, 6vw, 40px);
+    text-align: center;
+  }
+
+  .tabs-section-mobile__customer-name {
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+    color: #ffffff;
+    font-family: "Caveat", cursive;
+    font-size: clamp(18px, 4vw, 26px);
+    font-weight: 700;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .tabs-section-mobile__customer-role {
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(10px, 2.4vw, 15px);
+    font-weight: 400;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  /* ==================================================
+     Case-study button
+     ================================================== */
+
+  .tabs-section-mobile__case-study-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    min-height: clamp(48px, 10vw, 66px);
+    margin-top: auto;
+    padding: 0 clamp(5px, 1.5vw, 9px) 0 clamp(16px, 3.5vw, 26px);
+    border: 0;
+    border-radius: 999px;
+    background: rgba(103, 242, 215, 0.2);
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(14px, 3.4vw, 19px);
+    font-weight: 500;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .tabs-section-mobile__case-study-arrow {
+    display: flex;
+    flex: 0 0 clamp(36px, 8vw, 48px);
+    align-items: center;
+    justify-content: center;
+    width: clamp(36px, 8vw, 48px);
+    height: clamp(36px, 8vw, 48px);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .tabs-section-mobile__case-study-arrow img {
+    width: clamp(12px, 2.8vw, 17px);
+    height: clamp(12px, 2.8vw, 17px);
+    object-fit: contain;
+  }
+
+  /* ==================================================
+     Media
+     ================================================== */
+
+  .tabs-section-mobile__media {
+    position: relative;
+    width: 100%;
+    height: clamp(230px, calc(70vw + 40px), 560px);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .tabs-section-mobile__media-image,
+  .tabs-section-mobile__media video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: fit;
+    object-position: center center;
+  }
+
+  .tabs-section-mobile__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: clamp(48px, 12vw, 74px);
+    height: clamp(48px, 12vw, 74px);
+    border: 2px solid rgba(255, 255, 255, 0.75);
+    border-radius: 50%;
+    background: rgba(157, 128, 111, 0.72);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .tabs-section-mobile__play::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 54%;
+    width: 0;
+    height: 0;
+    border-top: clamp(7px, 1.8vw, 10px) solid transparent;
+    border-bottom: clamp(7px, 1.8vw, 10px) solid transparent;
+    border-left: clamp(12px, 3vw, 17px) solid #ffffff;
+    transform: translate(-50%, -50%);
+  }
+
+  /* ==================================================
+     Solutions card
+     ================================================== */
+
+  .tabs-section-mobile__solutions-card {
+    width: 100%;
+    padding: clamp(12px, 2.8vw, 20px) clamp(9px, 2.4vw, 17px);
+    border-radius: var(--radius);
+    background: var(--card-bg);
+  }
+
+  .tabs-section-mobile__solutions-title {
+    margin: 0 0 var(--space-sm);
+    color: rgba(255, 255, 255, 0.8);
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(8px, 2vw, 13px);
+    font-weight: 300;
+    line-height: 1.3;
+    text-align: center;
+  }
+
+  .tabs-section-mobile__solutions-items {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: start;
+    gap: clamp(3px, 1vw, 8px);
+    width: 100%;
+  }
+
+  .tabs-section-mobile__solution-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: clamp(4px, 1vw, 7px);
+    min-width: 0;
+  }
+
+  .tabs-section-mobile__solution-icon {
+    display: block;
+    width: clamp(27px, 6.5vw, 42px);
+    height: clamp(27px, 6.5vw, 42px);
+    object-fit: contain;
+  }
+
+  .tabs-section-mobile__solution-name {
+    display: block;
+    width: 100%;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(6px, 1.5vw, 9px);
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* ==================================================
+     CRM and metric cards
+     ================================================== */
+
+  .tabs-section-mobile__data-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--block-gap);
+    width: 100%;
+  }
+
+  .tabs-section-mobile__data-card,
+  .tabs-section-mobile__crm-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+    min-height: clamp(120px, 28vw, 210px);
+    padding: clamp(11px, 2.8vw, 20px) clamp(10px, 2.8vw, 18px);
+
+    border-radius: var(--radius);
+    background: var(--card-bg);
+  }
+
+  .tabs-section-mobile__crm-icon {
+    display: block;
+
+    width: clamp(44px, 11vw, 70px);
+    height: auto;
+    max-height: clamp(32px, 8vw, 48px);
+    margin-bottom: var(--space-md);
+    object-fit: contain;
+    object-position: left center;
+  }
+
+  .tabs-section-mobile__crm-name {
+    margin: auto 0 2px;
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(12px, 3vw, 18px);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .tabs-section-mobile__crm-label {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(9px, 2.3vw, 14px);
+    line-height: 1.25;
+  }
+
+  .tabs-section-mobile__metric {
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+
+  .tabs-section-mobile__metric-value {
+    margin: 0;
+    color: #68f2d7;
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(21px, 5.5vw, 36px);
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  .tabs-section-mobile__metric-label {
+    margin: auto 0 0;
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(9px, 2.3vw, 15px);
+    font-weight: 400;
+    line-height: 1.3;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  /* ==================================================
+     Very narrow phones
+     ================================================== */
+
+  @media (max-width: 340px) {
+    .tabs-section-mobile {
+      --mobile-width: calc(100vw - 46px);
+    }
+    .tabs-section-mobile__quote-text {
+      font-size: 14px;
+    }
+    .tabs-section-mobile__media {
+      height: 240px;
+    }
+    .tabs-section-mobile__data-card,
+    .tabs-section-mobile__crm-card {
+      min-height: 116px;
+    }
+  }
+}

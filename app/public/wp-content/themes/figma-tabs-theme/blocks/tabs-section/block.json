@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "acf/tabs-section",
+    "version": "1.0.0",
+    "title": "Tabs Section",
+    "description": "A responsive tabs section with text, icons and video.",
+    "category": "design",
+    "icon": "index-card",
+    "keywords": ["tabs", "video", "content"],
+    "textdomain": "figma-tabs",
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "render.php"
+    },
+    "supports": {
+        "align": false,
+        "anchor": true,
+        "jsx": true
+    },
+    "style": "file:./style.css",
+    "editorStyle": "file:./editor.css",
+    "viewScript": "file:./script.js"
+}
